@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import ToDoItem from './ToDoItem';
 
-const ToDoList = ({ todos }) => {
+const ToDoList = ({ todos, onChange }) => {
   return (
     <ul>
       {todos.map((todo) => (
-        <ToDoItem key={todo.id} todo={todo} />
+        <ToDoItem key={todo.id} todo={todo} onChange={onChange} />
       ))}
     </ul>
   );
@@ -19,6 +19,12 @@ ToDoList.propTypes = {
       isCompleted: PropTypes.bool.isRequired,
     })
   ).isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+ToDoList.defaultProps = {
+  todos: [],
+  onChange: (id, newState) => {},
 };
 
 export default ToDoList;
